@@ -4,19 +4,32 @@ import Home from "./pages/Home";
 import New from "./pages/New";
 import Edit from "./pages/Edit";
 import Diary from "./pages/Diary";
-import RouteTest from "./components/RouteTest";
+import MyButton from "./components/MyButton";
+import MyHeader from "./components/MyHeader";
+
 function App() {
   return (
     <BrowserRouter>
       <div className="App">
+        <MyHeader
+          headText={"App"}
+          leftChild={
+            <MyButton text={"왼쪽 버튼"} onClick={() => alert("왼쪽 클릭!")} />
+          }
+        />
         <h2>App.js</h2>
+        <MyButton
+          text={"버튼"}
+          type={"positive"}
+          onClick={() => alert("버튼 클릭!")}
+        />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/new" element={<New />} />
-          <Route path="/edit/:id" element={<Edit />} />
-          <Route path="/diary/:id" element={<Diary />} />
+          <Route path="/edit" element={<Edit />} />
+          <Route path="/diary/:id" element={<Diary />} />{" "}
+          {/* :id는 Params가 꼭 오는경우에 사용해야함. 만일 이렇게 하고 Query로 주면 못알아들음 */}
         </Routes>
-        <RouteTest />
       </div>
     </BrowserRouter>
   );
